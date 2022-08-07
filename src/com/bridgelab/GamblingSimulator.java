@@ -9,6 +9,7 @@ public class GamblingSimulator {
 	static int WON = 1;
 	static int LOST = 0;
 	static int TOTAL_AMOUNT = 0;
+	static int TOTAL_AMOUNT_DIFF_IN_MONTH = 0;
 
 	public static void main(String[] args) {
 		System.out.println("---------Welcome To Gambling Simulator---------");
@@ -44,9 +45,24 @@ public class GamblingSimulator {
 				System.out.println("Player would like to resign for current day" + i);
 
 			}
+			if (InHandcash > 100) {
+				int amountWonPerDay = InHandcash - AMOUNT_OF_STAKE;
+				System.out.println("Player won day" + i + " RS " + amountWonPerDay);
+
+			} else if (InHandcash < 100) {
+				int amountLostPerDay = AMOUNT_OF_STAKE - InHandcash;
+				System.out.println("Player lost day" + i + " RS " + amountLostPerDay);
+
+			}
 			TOTAL_AMOUNT = TOTAL_AMOUNT + InHandcash;
 		}
 		System.out.println("Total amount player has after 20 days as per day included = " + TOTAL_AMOUNT + " $");
+		TOTAL_AMOUNT_DIFF_IN_MONTH = TOTAL_AMOUNT - AMOUNT_OF_STAKE * 20;
+		if (TOTAL_AMOUNT_DIFF_IN_MONTH > 0) {
+			System.out.println("Total cash gambler won " + TOTAL_AMOUNT_DIFF_IN_MONTH + " $");
+		} else {
+			System.out.println("Total cash gambler lost in that month " + TOTAL_AMOUNT_DIFF_IN_MONTH + " $");
+		}
 	}
 
 }
